@@ -171,6 +171,4 @@ cython_debug/
 .pypirc
 
 
-
-crosswalk/
-no_crosswalk/
+dataset/
