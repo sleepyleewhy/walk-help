@@ -5,8 +5,9 @@ import numpy as np
 import cv2
 from fastapi.middleware.cors import CORSMiddleware
 
+from sockets import sio_app
 
-    
+
 def base64_to_image(base64_string):
     img_bytes = base64.b64decode(base64_string)
     img_array = np.frombuffer(img_bytes, dtype=np.uint8)
@@ -21,11 +22,7 @@ app.add_middleware(CORSMiddleware,
                 allow_credentials=True,
                 allow_methods=["*"],
                 allow_headers=["*"])
-
+app.mount('/', app=sio_app)
 
 model = YOLO("./crosswalk-detection-model/best.pt")
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
 
