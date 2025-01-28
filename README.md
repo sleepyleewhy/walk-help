@@ -14,5 +14,6 @@ First, you have to calibrate the app by walking 10 seconds while watching the sc
 Then you can press Start. If you are watching the screen, the frontend will send the current image datas to the backend, which evaluates it if there is a crosswalk.
 
 Currently it is not deployed, but the watching detection can be tested using ngrok -> it hosts the localhost publicly, so you can check it on your phone (https://ngrok.com/docs/getting-started/)
+
 You can also test the image evaluation with a webcam, or using Phone Link on windows.
 
