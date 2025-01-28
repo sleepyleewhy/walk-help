@@ -17,3 +17,4 @@ Currently it is not deployed, but the watching detection can be tested using ngr
 
 You can also test the image evaluation with a webcam, or using Phone Link on windows.
 
+There is a test.py file in the trainResults folder, which runs an example video on the model for benchmarking purposes.
