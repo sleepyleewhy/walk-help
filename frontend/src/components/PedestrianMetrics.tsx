@@ -26,6 +26,8 @@ const PedestrianMetrics: React.FC = () => {
                 <button onClick={() => context.setIsMagnitudeActive(!context.isMagnitudeActive)}>Toggle</button>
                 <p>Magnitude threshold: {context.magnitudeThreshold}</p>
                 <p>Orientation: {context.orientation}</p>
+                <p>Orientation is active: {context.isOrientationActive ? 'Yes' : 'No'}</p>
+                <button onClick={() => context.setIsOrientationActive(!context.isOrientationActive)}>Toggle</button>
                 <h3>Camera</h3>
                 <img src={context.cameraImage} alt="Camera" />
                 <h3>Awareness</h3>

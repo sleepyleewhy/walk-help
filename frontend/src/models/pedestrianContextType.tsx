@@ -14,7 +14,8 @@ export type PedestrianContextType = {
     setMagnitudeThreshold: Dispatch<SetStateAction<number>>,
 
     orientation: number,
-    setOrientation: Dispatch<SetStateAction<number>>,
+    isOrientationActive: boolean,
+    setIsOrientationActive: Dispatch<SetStateAction<boolean>>,
 
     cameraImage: Base64URLString,
     setCameraImage: Dispatch<SetStateAction<Base64URLString>>,
