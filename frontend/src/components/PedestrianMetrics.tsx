@@ -17,9 +17,13 @@ const PedestrianMetrics: React.FC = () => {
             <h2>Pedestrian Metrics</h2>
             <div>
                 <h3>Position</h3>
-                <p>Longitude: {context.location.longitude}</p>
-                <p>Latitude: {context.location.latitude}</p>
-                <p>Accuracy: {context.location.accuracy}</p>
+                <p>Longitude: {context.location?.longitude}</p>
+                <p>Latitude: {context.location?.latitude}</p>
+                <p>Accuracy: {context.location?.accuracy}</p>
+                <p>Speed: {context.location?.speed}</p>
+                <p>Timestamp: {context.location?.timestamp.toLocaleDateString()}</p>
+                <p>Location is active: {context.isLocationActive ? 'Yes' : 'No'}</p>
+                <button onClick={() => context.setIsLocationActive(!context.isLocationActive)}>Toggle</button>
                 <h3>Sensors</h3>
                 <p>Magnitude: {context.magnitude}</p>
                 <p>Magnitude is active: {context.isMagnitudeActive ? 'Yes' : 'No'}</p>

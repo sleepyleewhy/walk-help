@@ -5,12 +5,15 @@ import { Location } from "../models/location";
 const defaultLocation: Location = {
     longitude : 0,
     latitude : 0,
-    accuracy: 0
+    accuracy: 0,
+    speed: 0,
+    timestamp: new Date()
 }
 
 const defaultContext: PedestrianContextType = {
     location: defaultLocation,
-    setLocation: () => {},
+    isLocationActive: false,
+    setIsLocationActive: () => {},
     magnitude: 0,
     isMagnitudeActive: false,
     setIsMagnitudeActive: () => {},
