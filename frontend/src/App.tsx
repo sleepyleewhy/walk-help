@@ -1,5 +1,5 @@
 
-import Accelerometer from './Accelerometer'
+import Accelerometer from './components/Accelerometer'
 import './App.css'
 // import CrosswalkDetection from './CrosswalkDetection'
 import { useState } from 'react'
