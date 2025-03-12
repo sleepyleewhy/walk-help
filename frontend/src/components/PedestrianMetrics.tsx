@@ -33,7 +33,10 @@ const PedestrianMetrics: React.FC = () => {
                 <p>Orientation is active: {context.isOrientationActive ? 'Yes' : 'No'}</p>
                 <button onClick={() => context.setIsOrientationActive(!context.isOrientationActive)}>Toggle</button>
                 <h3>Camera</h3>
-                <img src={context.cameraImage} alt="Camera" />
+                <p>Camera is active: {context.isCameraActive ? 'Yes' : 'No'}</p>
+                <button onClick={() => context.setIsCameraActive(!context.isCameraActive)}>Toggle</button>
+                {context.cameraImage && <img src={context.cameraImage} alt="Camera" />}
+                
                 <h3>Awareness</h3>
                 <p>Alert Level: {context.alertLevel}</p>
                 <p>Unaware: {context.unaware ? "Yes" : "No"}</p>
