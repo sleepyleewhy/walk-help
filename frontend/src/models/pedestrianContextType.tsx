@@ -7,7 +7,8 @@ export type PedestrianContextType = {
     setLocation: Dispatch<SetStateAction<Location>>,
 
     magnitude: number,
-    setMagnitude: Dispatch<SetStateAction<number>>,
+    isMagnitudeActive: boolean,
+    setIsMagnitudeActive: Dispatch<SetStateAction<boolean>>,
 
     magnitudeThreshold: number,
     setMagnitudeThreshold: Dispatch<SetStateAction<number>>,
