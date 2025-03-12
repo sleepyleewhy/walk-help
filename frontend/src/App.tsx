@@ -1,10 +1,10 @@
 
 import Accelerometer from './components/Accelerometer'
-import './App.css'
 // import CrosswalkDetection from './CrosswalkDetection'
 import { useState } from 'react'
 // import { io } from 'socket.io-client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import PedestrianPage from './pages/pedestrian/pedestrianPage'
 
 function App() {
   const [isCurrWatching, setIsCurrWatching] = useState(false)
@@ -17,6 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Accelerometer isCurrWatching={isCurrWatching} setIsCurrWatching={setIsCurrWatching} />} />
+        <Route path="/pedestrian" element={<PedestrianPage/>}/>
       </Routes>
     </BrowserRouter>
 
