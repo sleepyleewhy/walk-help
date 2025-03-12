@@ -2,37 +2,44 @@ import React, { useState, ReactNode } from "react";
 import { PedestrianContextType } from "../models/pedestrianContextType";
 
 import { PedestrianContext } from "./pedestrianContext";
-import { Location } from "../models/location";
+import useMagnitude from "../hooks/useMagnitude";
+import useOrientation from "../hooks/useOrientation";
+import useLocation from "../hooks/useLocation";
+import useCamera from "../hooks/useCamera";
 
 type PedestrianProviderProps = {
     children: ReactNode;
 };
 
 const PedestrianProvider: React.FC<PedestrianProviderProps> = ({ children }) => {
-    const [location, setLocation] = useState<Location>({ longitude: 0, latitude: 0, accuracy: 0 });
-    const [magnitude, setMagnitude] = useState<number>(0);
+    const {location, isLocationActive, setIsLocationActive} = useLocation();
+    const { magnitude, isMagnitudeActive , setIsMagnitudeActive } = useMagnitude();
     const [magnitudeThreshold, setMagnitudeThreshold] = useState<number>(0);
-    const [orientation, setOrientation] = useState<number>(0);
-    const [cameraImage, setCameraImage] = useState<string>("");
+    const { orientation, isOrientationActive, setIsOrientationActive } = useOrientation();
+    const { imageAsBase64, isCameraActive, setIsCameraActive,  canvasRef, videoRef } = useCamera();
     const [alertLevel, setAlertLevel] = useState<number>(0);
     const [unaware, setUnaware] = useState<boolean>(false);
     const [crosswalkId, setCrosswalkId] = useState<number>(0);
 
     const contextValue: PedestrianContextType = {
         location,
-        setLocation,
+        isLocationActive,
+        setIsLocationActive,
 
         magnitude,
-        setMagnitude,
+        isMagnitudeActive,
+        setIsMagnitudeActive,
 
         magnitudeThreshold,
         setMagnitudeThreshold,
 
         orientation,
-        setOrientation,
+        isOrientationActive,
+        setIsOrientationActive,
 
-        cameraImage,
-        setCameraImage,
+        cameraImage: imageAsBase64,
+        isCameraActive,
+        setIsCameraActive,
 
         alertLevel,
         setAlertLevel,
@@ -45,9 +52,14 @@ const PedestrianProvider: React.FC<PedestrianProviderProps> = ({ children }) => 
     };
 
     return (
+        <>
+        
         <PedestrianContext.Provider value={contextValue}>
             {children}
         </PedestrianContext.Provider>
+        <video ref={videoRef} autoPlay style={{display: 'none'}}></video>
+        <canvas ref={canvasRef} style={{display: 'none'}} height={640} width={640}></canvas>
+        </>
     );
 };
 

@@ -5,20 +5,26 @@ import { Location } from "../models/location";
 const defaultLocation: Location = {
     longitude : 0,
     latitude : 0,
-    accuracy: 0
+    accuracy: 0,
+    speed: 0,
+    timestamp: new Date()
 }
 
 const defaultContext: PedestrianContextType = {
     location: defaultLocation,
-    setLocation: () => {},
+    isLocationActive: false,
+    setIsLocationActive: () => {},
     magnitude: 0,
-    setMagnitude: () => {},
+    isMagnitudeActive: false,
+    setIsMagnitudeActive: () => {},
     magnitudeThreshold: 0,
     setMagnitudeThreshold: () => {},
     orientation: 0,
-    setOrientation: () => {},
+    isOrientationActive: false,
+    setIsOrientationActive: () => {},
     cameraImage: "",
-    setCameraImage: () => {},
+    isCameraActive: false,
+    setIsCameraActive: () => {},
     alertLevel: 0,
     setAlertLevel: () => {},
     unaware: false,
