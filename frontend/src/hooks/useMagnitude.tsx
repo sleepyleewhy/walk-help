@@ -4,7 +4,7 @@ import { CalculateMagnitude } from "../utils/magnitudeCalculator";
 
 const useMagnitude = () => {
     const [magnitude, setMagnitude] = useState<number>(0);
-    const [isActive, setIsActive] = useState<boolean>(false);
+    const [isMagnitudeActive, setIsMagnitudeActive] = useState<boolean>(false);
 
     useEffect(() => {
         const handleMotionEvent = (event: DeviceMotionEvent) => {
@@ -16,10 +16,10 @@ const useMagnitude = () => {
             }
         }
 
-        if (window.DeviceMotionEvent && isActive){
+        if (window.DeviceMotionEvent && isMagnitudeActive){
             window.addEventListener('devicemotion', handleMotionEvent)
         }
-        else if (window.DeviceMotionEvent && !isActive) {
+        else if (window.DeviceMotionEvent && !isMagnitudeActive) {
             window.removeEventListener('devicemotion', handleMotionEvent)
         }
         else {
@@ -33,10 +33,10 @@ const useMagnitude = () => {
         }
 
 
-    }, [isActive])
+    }, [isMagnitudeActive])
 
 
-    return {magnitude, isActive, setIsActive};
+    return {magnitude, isMagnitudeActive, setIsMagnitudeActive};
     
 }
 
