@@ -30,4 +30,6 @@ export type PedestrianContextType = {
     
     crosswalkId: number,
     setCrosswalkId: Dispatch<SetStateAction<number>>
+
+    isCrosswalkDetectionActive: boolean,
 }

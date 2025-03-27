@@ -6,6 +6,8 @@ import useMagnitude from "../hooks/useMagnitude";
 import useOrientation from "../hooks/useOrientation";
 import useLocation from "../hooks/useLocation";
 import useCamera from "../hooks/useCamera";
+import useCrosswalkDetection from "../hooks/useCrosswalkDetection";
+import { useSocketContext } from "./socketContext";
 
 type PedestrianProviderProps = {
     children: ReactNode;
@@ -20,6 +22,8 @@ const PedestrianProvider: React.FC<PedestrianProviderProps> = ({ children }) => 
     const [alertLevel, setAlertLevel] = useState<number>(0);
     const [unaware, setUnaware] = useState<boolean>(false);
     const [crosswalkId, setCrosswalkId] = useState<number>(0);
+    const socket = useSocketContext();
+    const isCrosswalkDetectionActive = useCrosswalkDetection(socket, imageAsBase64, alertLevel, setAlertLevel, isCameraActive, setIsCameraActive);
 
     const contextValue: PedestrianContextType = {
         location,
@@ -48,7 +52,9 @@ const PedestrianProvider: React.FC<PedestrianProviderProps> = ({ children }) => 
         setUnaware,
 
         crosswalkId,
-        setCrosswalkId
+        setCrosswalkId,
+        
+        isCrosswalkDetectionActive
     };
 
     return (

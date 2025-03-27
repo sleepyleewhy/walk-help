@@ -30,7 +30,8 @@ const defaultContext: PedestrianContextType = {
     unaware: false,
     setUnaware: () => {},
     crosswalkId: 0,
-    setCrosswalkId: () => {}
+    setCrosswalkId: () => {},
+    isCrosswalkDetectionActive: false,
 }
 
 
