@@ -13,4 +13,4 @@ async def connect(sid, environ, auth):
     
 @sio_server.event
 async def predict(sid, data):  
-    await sio_server.emit('predict_result', predictImageIsCrosswalk(data))
+    await sio_server.emit('predict_result_'+ data.username, predictImageIsCrosswalk(data.imageAsBase64))
