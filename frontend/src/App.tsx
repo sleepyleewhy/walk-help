@@ -8,7 +8,7 @@ import PedestrianPage from './pages/pedestrian/pedestrianPage'
 
 function App() {
   const [isCurrWatching, setIsCurrWatching] = useState(false)
-
+  localStorage.setItem("username", "test");
   // const socket = io('http://127.0.0.1:8000', {
   //   path: '/sockets',
   //   transports: ['websocket'],
