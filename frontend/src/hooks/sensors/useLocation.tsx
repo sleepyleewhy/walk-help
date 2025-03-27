@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Location } from "../models/location";
+import { Location } from "../../models/location";
 
 
 const useLocation = () => {

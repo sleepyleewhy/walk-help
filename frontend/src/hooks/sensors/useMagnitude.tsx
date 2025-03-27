@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CalculateMagnitude } from "../utils/magnitudeCalculator";
+import { CalculateMagnitude } from "../../utils/magnitudeCalculator";
 
 
 const useMagnitude = () => {

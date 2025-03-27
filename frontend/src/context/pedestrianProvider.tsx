@@ -2,11 +2,11 @@ import React, { useState, ReactNode } from "react";
 import { PedestrianContextType } from "../models/pedestrianContextType";
 
 import { PedestrianContext } from "./pedestrianContext";
-import useMagnitude from "../hooks/useMagnitude";
-import useOrientation from "../hooks/useOrientation";
-import useLocation from "../hooks/useLocation";
-import useCamera from "../hooks/useCamera";
-import useCrosswalkDetection from "../hooks/useCrosswalkDetection";
+import useMagnitude from "../hooks/sensors/useMagnitude";
+import useOrientation from "../hooks/sensors/useOrientation";
+import useLocation from "../hooks/sensors/useLocation";
+import useCamera from "../hooks/sensors/useCamera";
+import useCrosswalkDetection from "../hooks/services/useCrosswalkDetection";
 import { useSocketContext } from "./socketContext";
 
 type PedestrianProviderProps = {
