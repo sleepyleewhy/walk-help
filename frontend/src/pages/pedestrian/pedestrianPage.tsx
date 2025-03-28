@@ -1,7 +1,6 @@
 import PedestrianMetrics from "../../components/PedestrianMetrics";
 import PedestrianProvider from "../../context/pedestrianProvider";
 
-
 const PedestrianPage : React.FC = () => {
 
     return (

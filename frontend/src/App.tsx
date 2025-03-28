@@ -5,6 +5,7 @@ import { useState } from 'react'
 // import { io } from 'socket.io-client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PedestrianPage from './pages/pedestrian/pedestrianPage'
+import Home from './pages/home/home'
 
 function App() {
   const [isCurrWatching, setIsCurrWatching] = useState(false)
@@ -16,7 +17,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Accelerometer isCurrWatching={isCurrWatching} setIsCurrWatching={setIsCurrWatching} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/accelerometer" element={<Accelerometer isCurrWatching={isCurrWatching} setIsCurrWatching={setIsCurrWatching} />} />
         <Route path="/pedestrian" element={<PedestrianPage/>}/>
       </Routes>
     </BrowserRouter>
