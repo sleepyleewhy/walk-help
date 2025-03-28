@@ -1,20 +1,16 @@
-import { useEffect } from "react";
 import { usePedestrianContext } from "../context/pedestrianContext";
 
 
 
 const PedestrianMetrics: React.FC = () => {
 
-    const context = usePedestrianContext();
-
-    useEffect(() => {
-        context.setAlertLevel(2);
-    }, [context]);
+    const context = usePedestrianContext();;
 
 
     return (
         <div>
-            <h2>Pedestrian Metrics</h2>
+            <h1 className="font-bold text-2xl">Pedestrian Metrics</h1>
+            <p className="font-semibold text-xl">Alert Level: {context.alertLevel}</p>
             <div>
                 <h3>Position</h3>
                 <p>Longitude: {context.location?.longitude}</p>
@@ -38,7 +34,7 @@ const PedestrianMetrics: React.FC = () => {
                 {context.cameraImage && <img src={context.cameraImage} alt="Camera" />}
                 
                 <h3>Awareness</h3>
-                <p>Alert Level: {context.alertLevel}</p>
+
                 <p>Unaware: {context.unaware ? "Yes" : "No"}</p>
                 <h3>Crosswalk</h3>
                 <p>Crosswalk ID: {context.crosswalkId}</p>

@@ -41,7 +41,9 @@ export const PedestrianContext = createContext<PedestrianContextType>(defaultCon
 export const usePedestrianContext = () => {
     const context = useContext(PedestrianContext);
     if (!context) {
+        console.error("usePedestrianContext must be used within a PedestrianProvider");
         throw new Error("usePedestrianContext must be used within a PedestrianProvider");
+
     }
 
     return context;

@@ -10,7 +10,7 @@ const useCrosswalkDetection = (socket: Socket, imageAsBase64: string, alertLevel
     const isCrosswalkDetectionActive = alertLevel >= 1;
     const noCrosswalkCounter = useRef(0);
     const username = localStorage.getItem("username");
-    const intervalId = useRef(-1);
+    const intervalId = useRef<NodeJS.Timeout | number>(-1);
     useEffect(() => {
 
         if (alertLevel >= 1) {
@@ -36,6 +36,7 @@ const useCrosswalkDetection = (socket: Socket, imageAsBase64: string, alertLevel
             });
             intervalId.current = setInterval(() => {
                 socket.emit("predict", username, imageAsBase64);
+                console.log('predict', imageAsBase64);
             }, 100);
         }
         else {
