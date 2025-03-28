@@ -72,7 +72,7 @@ const PedestrianCalibrationDrawer: React.FC = () => {
             
             setIsCalibrating(false);
             if (watchingAverage.current <= 1 || notWatchingAverage.current <= 1) {
-                toast(`Values: ${watchingAverage} ${notWatchingAverage} Calibration failed, please try again. Make sure you are walking while calibrating.`);
+                toast(`Calibration failed, please try again. Make sure you are walking while calibrating.`);
                 resetCalibration();
                 errorsound.play();
 
@@ -99,7 +99,9 @@ const PedestrianCalibrationDrawer: React.FC = () => {
 
 
     return <Drawer>
-        <DrawerTrigger>Calibrate</DrawerTrigger>
+        <DrawerTrigger asChild>
+            <Button variant="outline">Calibrate</Button>
+        </DrawerTrigger>
         <DrawerContent>
             <div className="mx-auto w-full max-w-xl">
                 <DrawerHeader>
