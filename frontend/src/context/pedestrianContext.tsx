@@ -32,6 +32,7 @@ const defaultContext: PedestrianContextType = {
     crosswalkId: 0,
     setCrosswalkId: () => {},
     isCrosswalkDetectionActive: false,
+    isWatchingDetectionActive: false
 }
 
 
