@@ -20,7 +20,7 @@ const PedestrianProvider: React.FC<PedestrianProviderProps> = ({ children }) => 
     const [magnitudeThreshold, setMagnitudeThreshold] = useState<number>(0);
     const { orientation, isOrientationActive, setIsOrientationActive } = useOrientation();
     const { imageAsBase64, isCameraActive, setIsCameraActive,  canvasRef, videoRef } = useCamera();
-    const [alertLevel, setAlertLevel] = useState<number>(0);
+    const [alertLevel, setAlertLevel] = useState<number>(-1);
     const [unaware, setUnaware] = useState<boolean>(false);
     const [crosswalkId, setCrosswalkId] = useState<number>(0);
     const socket = useSocketContext();

@@ -1,20 +1,15 @@
-import { useEffect } from "react";
 import { usePedestrianContext } from "../context/pedestrianContext";
 
 
 
 const PedestrianMetrics: React.FC = () => {
 
-    const context = usePedestrianContext();
-
-    useEffect(() => {
-        context.setAlertLevel(2);
-    }, [context]);
+    const context = usePedestrianContext();;
 
 
     return (
         <div>
-            <h2>Pedestrian Metrics</h2>
+            <h1>Pedestrian Metrics</h1>
             <div>
                 <h3>Position</h3>
                 <p>Longitude: {context.location?.longitude}</p>
