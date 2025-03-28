@@ -18,7 +18,6 @@ const useWatchingDetection = (magnitude : number, isMagnitudeActive : boolean, s
             if (!isMagnitudeActive){
                 setIsMagnitudeActive(true);
             }
-
             if (magnitude > magnitudeThreshold){
                 lowMagnitudeCounter.current = 0;
                 highMagnitudeCounter.current++;
