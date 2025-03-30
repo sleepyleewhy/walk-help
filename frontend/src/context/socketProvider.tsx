@@ -10,13 +10,15 @@ type SocketProviderProps = {
 
 const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
-    const socket = io('http://127.0.0.1:8000', {
+    const socket = io(import.meta.env.VITE_API_URL, {
         path: '/sockets',
         transports: ['websocket'],
+        secure: true,
     });
 
     socket.on("connect_error", (err) => {
-        console.log(`connect_error due to ${err}`);
+        console.error("Connection error: ",import.meta.env.API_URL, err.message);
+
     });
     socket.on('connect', () => {
         console.log('Connected to server');

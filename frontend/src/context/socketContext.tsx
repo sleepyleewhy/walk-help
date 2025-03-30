@@ -3,9 +3,10 @@ import { io, Socket } from "socket.io-client";
 
 
 
-export const socketContext = createContext<Socket>(io('http://127.0.0.1:8000', {
+export const socketContext = createContext<Socket>(io(import.meta.env.VITE_API_URL, {
     path: '/sockets',
     transports: ['websocket'],
+    secure: true,
 }));
 
 export const useSocketContext = () => {
