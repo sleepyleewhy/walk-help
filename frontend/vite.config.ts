@@ -12,6 +12,12 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: true
+    allowedHosts: true,
+    https: {
+      key: './cert.key',
+      cert: './cert.crt',
+    },
+    host: '0.0.0.0',
+    port: 5173
   }
 })
