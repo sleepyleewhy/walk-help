@@ -16,7 +16,6 @@ def base64_to_image(base64_string):
 
 
 def predictImageIsCrosswalk(base64_string):
-    print(base64_string)
     img = base64_to_image(base64_string)
     results = model.predict(source=img)
     if (results[0].probs.top1 == 0 and results[0].probs.top1conf > 0.9):
