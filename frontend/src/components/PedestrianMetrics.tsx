@@ -34,8 +34,6 @@ const PedestrianMetrics: React.FC = () => {
                 {context.cameraImage && <img src={context.cameraImage} alt="Camera" />}
                 
                 <h3>Awareness</h3>
-
-                <p>Unaware: {context.unaware ? "Yes" : "No"}</p>
                 <h3>Crosswalk</h3>
                 <p>Crosswalk ID: {context.crosswalkId}</p>
             </div>
