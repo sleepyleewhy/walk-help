@@ -24,13 +24,11 @@ export type PedestrianContextType = {
 
     alertLevel: number,
     setAlertLevel: Dispatch<SetStateAction<number>>,
-
-    unaware: boolean,
-    setUnaware: Dispatch<SetStateAction<boolean>>,
     
     crosswalkId: number,
     setCrosswalkId: Dispatch<SetStateAction<number>>
 
     isCrosswalkDetectionActive: boolean,
-    isWatchingDetectionActive: boolean
+    isWatchingDetectionActive: boolean,
+    isCrosswalkLocatorActive: boolean
 }
