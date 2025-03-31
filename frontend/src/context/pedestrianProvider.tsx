@@ -18,7 +18,6 @@ type PedestrianProviderProps = {
 const PedestrianProvider: React.FC<PedestrianProviderProps> = ({
     children,
 }) => {
-    const { location, isLocationActive, setIsLocationActive } = useLocation();
     const { magnitude, isMagnitudeActive, setIsMagnitudeActive } = useMagnitude();
     const [magnitudeThreshold, setMagnitudeThreshold] = useState<number>(0);
     const { orientation, isOrientationActive, setIsOrientationActive } =
@@ -31,6 +30,7 @@ const PedestrianProvider: React.FC<PedestrianProviderProps> = ({
         videoRef,
     } = useCamera();
     const [alertLevel, setAlertLevel] = useState<number>(-1);
+    const { location, isLocationActive, setIsLocationActive } = useLocation(alertLevel);
     const [crosswalkId, setCrosswalkId] = useState(0);
     const socket = useSocketContext();
     const isCrosswalkDetectionActive = useCrosswalkDetection(
@@ -50,7 +50,7 @@ const PedestrianProvider: React.FC<PedestrianProviderProps> = ({
         setAlertLevel
     );
 
-    const isCrosswalkLocatorActive = useCrosswalkLocator(location, alertLevel, setAlertLevel, orientation, )
+    const isCrosswalkLocatorActive = useCrosswalkLocator(location, alertLevel, setCrosswalkId, orientation)
 
 
     const contextValue: PedestrianContextType = {

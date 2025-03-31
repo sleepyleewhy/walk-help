@@ -24,7 +24,7 @@ const useCrosswalkLocator = (
         const deltaX = endNode.lon - startNode.lon;
         const deltaY = endNode.lat - startNode.lat;
         const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-        return (angle + 360) % 360; // Normalize to 0-360 degrees
+        return (angle + 360) % 360;
     }, [])
 
     const filterCrosswalksByAngle = useCallback((crosswalks: CrosswalkWay[], angleThreshold: number = 20) => {
@@ -87,6 +87,7 @@ const useCrosswalkLocator = (
     const getCrosswalksNearby = useCallback(async () => {
         if (!location) return;
         if (location.accuracy > 500) {
+            console.log('accuracy too low')
             throw new Error("Location accuracy is too low");
         }
         try {
@@ -193,7 +194,7 @@ const useCrosswalkLocator = (
             if (!intervalId.current){
                 intervalId.current = window.setInterval(async () => {
                     const id = await chooseEndangeredCrosswalk()
-                    setCrosswalkId(id)}, 1000);
+                    setCrosswalkId(id)}, 5000);
             }
             
 
