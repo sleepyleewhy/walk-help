@@ -83,4 +83,3 @@ jobs:
         with:
           app-name: 'walkhelp-backend'
           slot-name: 'Production'
-          package: release.zip
