@@ -2,33 +2,36 @@ import { useEffect, useState } from "react";
 import { Location } from "../../models/location";
 
 
-const useLocation = () => {
+const useLocation = (alertlevel : number) => {
     const [location, setLocation] = useState<Location| null>(null);
     const [isLocationActive, setIsLocationActive] = useState<boolean>(false);
 
     useEffect(() => {
         let watchId: number;
-
-        const handleSuccess = (position: GeolocationPosition) => {
-            const { latitude, longitude, accuracy, speed } = position.coords;
-
-            setLocation({ latitude, longitude, accuracy, speed, timestamp : new Date(position.timestamp)});
-        };
-
-        const handleError = (error: GeolocationPositionError) => {
-            console.error(error);
-        };
-
-        if (isLocationActive && navigator.geolocation) {
-            watchId = navigator.geolocation.watchPosition(
-                handleSuccess,
-                handleError,
-                {
-                    enableHighAccuracy: true,
-                    maximumAge: 0,
-                    timeout: 3000,
-                }
-            );
+        if (alertlevel >= 0) {
+            setIsLocationActive(true);
+            const handleSuccess = (position: GeolocationPosition) => {
+                const { latitude, longitude, accuracy, speed } = position.coords;
+    
+                setLocation({ latitude, longitude, accuracy, speed, timestamp : new Date(position.timestamp)});
+            };
+    
+            const handleError = (error: GeolocationPositionError) => {
+                console.error(error);
+            };
+    
+            if (isLocationActive && navigator.geolocation) {
+                watchId = navigator.geolocation.watchPosition(
+                    handleSuccess,
+                    handleError,
+                    {
+                        enableHighAccuracy: true,
+                        maximumAge: 0,
+                        timeout: 3000,
+                    }
+                );
+        }
+        
 
             return () => {
                 navigator.geolocation.clearWatch(watchId);
@@ -42,7 +45,7 @@ const useLocation = () => {
                 navigator.geolocation.clearWatch(watchId);
             }
         };
-    }, [isLocationActive]);
+    }, [isLocationActive, alertlevel]);
 
     return { location,isLocationActive, setIsLocationActive };
 };

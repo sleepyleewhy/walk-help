@@ -27,12 +27,11 @@ const defaultContext: PedestrianContextType = {
     setIsCameraActive: () => {},
     alertLevel: 0,
     setAlertLevel: () => {},
-    unaware: false,
-    setUnaware: () => {},
     crosswalkId: 0,
     setCrosswalkId: () => {},
     isCrosswalkDetectionActive: false,
-    isWatchingDetectionActive: false
+    isWatchingDetectionActive: false,
+    isCrosswalkLocatorActive: false
 }
 
 
