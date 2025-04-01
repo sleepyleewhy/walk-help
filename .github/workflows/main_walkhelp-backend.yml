@@ -73,9 +73,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_220950A93A59464CBDF4D0A5CF1330EC }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D56F8EFD0AEE41C882CE1957334719E1 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7C13FCA915EB4BC2A78E86DAC898273F }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
@@ -83,4 +83,4 @@ jobs:
         with:
           app-name: 'walkhelp-backend'
           slot-name: 'Production'
-          package: ./backend/release.zip
+          package: release.zip
