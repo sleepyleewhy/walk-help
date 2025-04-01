@@ -173,3 +173,7 @@ cython_debug/
 
 dataset/
 node_modules/
+
+
+cert.crt
+cert.key

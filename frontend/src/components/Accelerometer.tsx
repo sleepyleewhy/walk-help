@@ -82,8 +82,8 @@ const Accelerometer: React.FC<IAccelerometer> = ({isCurrWatching, setIsCurrWatch
 
 
     const CalibrateWatchingDetection = () => {
-        const startSound = new Audio('../public/sounds/start-next.mp3');
-        const endSound = new Audio('../public/sounds/end.mp3');
+        const startSound = new Audio('../assets/sounds/start-next.mp3');
+        const endSound = new Audio('../assets/sounds/end.mp3');
         startSound.play()
         setIsCalibrating(true)
         setIsCalibrateWatching(false)
