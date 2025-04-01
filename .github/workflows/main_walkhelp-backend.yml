@@ -64,6 +64,9 @@ jobs:
         with:
           name: python-app
 
+      - name: List downloaded files
+        run: ls -R
+
       - name: Unzip artifact for deployment
         run: unzip backend/release.zip -d backend
 
