@@ -10,14 +10,14 @@ type SocketProviderProps = {
 
 const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
-    const socket = io(import.meta.env.VITE_API_URL, {
+    const socket = io('nothing', {
         path: '/sockets',
         transports: ['websocket'],
         secure: true,
     });
 
     socket.on("connect_error", (err) => {
-        console.error("Connection error: ",import.meta.env.API_URL, err.message);
+        console.error("Connection error: ",'nothing', err.message);
 
     });
     socket.on('connect', () => {

@@ -13,11 +13,11 @@ export default defineConfig({
   },
   server: {
     allowedHosts: true,
-    https: {
-      key: './cert.key',
-      cert: './cert.crt',
-    },
-    host: '0.0.0.0',
-    port: 5173
+    // https: {
+    //   key: './cert.key',
+    //   cert: './cert.crt',
+    // },
+    // host: '0.0.0.0',
+    // port: 5173
   }
 })
