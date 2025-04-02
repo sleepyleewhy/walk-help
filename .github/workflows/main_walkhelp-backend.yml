@@ -84,3 +84,4 @@ jobs:
           app-name: 'walkhelp-backend'
           slot-name: 'Production'
           package: extr/
+          startup-command: "python -m uvicorn main:app --host 0.0.0.0 --port 8000"
