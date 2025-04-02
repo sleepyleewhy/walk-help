@@ -64,7 +64,11 @@ jobs:
         run: ls -R
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
+        run: unzip release.zip -d extr
+
+        
+      - name: List extracted files
+        run: ls -R extr
 
       - name: Login to Azure
         uses: azure/login@v2
@@ -79,3 +83,5 @@ jobs:
         with:
           app-name: 'walkhelp-backend'
           slot-name: 'Production'
+          src-path: 'extr'
+          enable-detailed-logging: true
