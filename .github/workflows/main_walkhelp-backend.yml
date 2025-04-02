@@ -15,10 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Navigate to backend folder
-        working-directory: ./backend
-        run: echo "Moved to backend folder"
-
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
