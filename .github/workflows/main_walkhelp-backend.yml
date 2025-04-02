@@ -81,4 +81,5 @@ jobs:
         with:
           app-name: 'walkhelp-backend'
           slot-name: 'Production'
+          startup-command: "uvicorn main:app --host 0.0.0.0 --port 8000"
           
