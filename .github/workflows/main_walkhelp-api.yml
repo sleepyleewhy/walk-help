@@ -63,7 +63,7 @@ jobs:
           name: python-app
       - name: List all files in the artifact
         run: |
-          ls -R backend/
+          ls -R
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
