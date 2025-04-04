@@ -10,7 +10,7 @@ type SocketProviderProps = {
 
 const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
-    const socket = io('nothing', {
+    const socket = io('wss://walkhelp-backend.azurewebsites.net', {
         path: '/sockets',
         transports: ['websocket'],
         secure: true,
