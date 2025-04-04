@@ -51,14 +51,6 @@ jobs:
         with:
           name: python-app
           
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-        
-      - name: Inspect unzipped artifact
-        run: |
-          echo "Contents of the unzipped artifact:"
-          ls -lh ./
-          
       - name: Login to Azure
         uses: azure/login@v2
         with:
