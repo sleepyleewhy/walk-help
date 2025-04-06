@@ -53,7 +53,7 @@ jobs:
           zip release.zip ./* -r
           
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v4
+        uses: azure/webapps-deploy@v3.0.1
         id: deploy-to-webapp
         with:
           app-name: 'walkhelp-api'
