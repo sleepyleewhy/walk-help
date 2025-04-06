@@ -57,8 +57,7 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'walkhelp-api'
-          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BB8AE445B5FE42BB8CE4D96E12D5AF96 }}
-          type: 'ZIP'
+          type: ZIP
           clean: true
-          package: './release.zip'
+          package: 'release.zip'
