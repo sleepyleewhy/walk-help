@@ -58,3 +58,4 @@ jobs:
           type: ZIP
           clean: true
           package: 'release.zip'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_34402DE27A7E4BEBA90E8AA370F1AC2C }}
