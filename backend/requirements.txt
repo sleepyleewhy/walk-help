@@ -1,5 +1,5 @@
-ultralytics
-opencv-contrib-python-headless
+ultralytics==8.3.102
+opencv-contrib-python-headless==4.11.0.86
 fastapi[standard]
-numpy
-python-socketio
+numpy==2.1.1
+python-socketio==5.12.1
