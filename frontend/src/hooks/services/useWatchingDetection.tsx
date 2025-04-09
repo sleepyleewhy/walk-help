@@ -10,11 +10,12 @@ const useWatchingDetection = (magnitude: number, isMagnitudeActive: boolean, set
     const [isWatchingDetectionActive, setIsWatchingDetectionActive] = useState<boolean>(false);
     const [magnitudeAverage, setMagnitudeAverage] = useState(0);
     const magnitudeHistory = useRef<number[]>([]);
+    const historyLength = 100;
 
     useEffect(() => {
         if (isWatchingDetectionActive && isMagnitudeActive) {
             magnitudeHistory.current.push(magnitude);
-            if (magnitudeHistory.current.length > 50) {
+            if (magnitudeHistory.current.length > historyLength) {
                 magnitudeHistory.current.shift();
             }
             if (magnitudeHistory.current.length > 0) {
@@ -38,7 +39,7 @@ const useWatchingDetection = (magnitude: number, isMagnitudeActive: boolean, set
             if (!isMagnitudeActive) {
                 setIsMagnitudeActive(true);
             }
-            if (magnitudeAverage > magnitudeThreshold) {
+            if (magnitudeAverage < magnitudeThreshold) {
 
                 if (alertLevel < 1) {
                     setAlertLevel(1);
