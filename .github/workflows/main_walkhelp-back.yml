@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - walkhelp-backend
+name: Build and deploy Python app to Azure Web App - walkhelp-back
 
 on:
   push:
@@ -22,50 +22,40 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          
-      - name: Zip artifact for deployment
-        working-directory: ./backend
-        run: zip release.zip ./* -r
-
+          python-version: '3.12.7'
+            
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
           name: python-app
           path: |
-            backend/release.zip
-
+            backend/
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: python-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip -d release
           
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8BBF2DE09C304D5DBBA012D6116B12D2 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A5916C2C62A04E0FA0821EEE0A9D21DA }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_32A3620AC4E94DD08101C31CBC25C2ED }}
-
+      - name: List all files in the artifact
+        run: |
+          ls -R
+      - name: Zip app
+        run: |
+          zip release.zip ./* -r
+          
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v3.0.1
         id: deploy-to-webapp
         with:
-          app-name: 'walkhelp-backend'
-          slot-name: 'Production'
-          package: './release'
-          
+          app-name: 'walkhelp-back'
+          type: ZIP
+          clean: true
+          package: 'release.zip'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_34402DE27A7E4BEBA90E8AA370F1AC2C }}

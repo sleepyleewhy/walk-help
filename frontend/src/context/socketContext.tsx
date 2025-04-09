@@ -1,13 +1,13 @@
 import { createContext, useContext } from "react";
 import { io, Socket } from "socket.io-client";
 
-
-
-export const socketContext = createContext<Socket>(io(import.meta.env.VITE_API_URL, {
+export const socket = io(import.meta.env.VITE_API_URL, {
     path: '/sockets',
     transports: ['websocket'],
-    secure: true,
-}));
+    secure: true
+})
+
+export const socketContext = createContext<Socket>(socket);
 
 export const useSocketContext = () => {
     const context = useContext(socketContext);

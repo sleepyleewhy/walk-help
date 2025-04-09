@@ -24,6 +24,8 @@ jobs:
           node-version: '20.x'
 
       - name: npm install, build, and test
+        env: 
+          VITE_API_URL: 'wss://walkhelp-back.azurewebsites.net'
         run: |
           cd frontend
           npm install

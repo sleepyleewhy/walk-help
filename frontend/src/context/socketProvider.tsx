@@ -1,6 +1,5 @@
-import React, {  ReactNode } from "react";
-import { socketContext } from "./socketContext";
-import { io } from "socket.io-client";
+import React, {  ReactNode, useEffect } from "react";
+import { socket, socketContext } from "./socketContext";
 
 
 
@@ -10,20 +9,19 @@ type SocketProviderProps = {
 
 const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
-    const socket = io('wss://walkhelp-backend.azurewebsites.net', {
-        path: '/sockets',
-        transports: ['websocket'],
-        secure: true,
-    });
-
-    socket.on("connect_error", (err) => {
-        console.error("Connection error: ",'nothing', err.message);
-
-    });
-    socket.on('connect', () => {
-        console.log('Connected to server');
-    });
-
+    useEffect(() => {
+        socket.on("connect_error", (err) => {
+            console.error("Connection error: ",'nothing', err.message);
+    
+        });
+        socket.on('connect', () => {
+            console.log('Connected to server');
+        });
+        socket.on('disconnect', () => {
+            console.log('Disconnected from server');
+        });
+    }, [])
+   
     return (
         <>
         
