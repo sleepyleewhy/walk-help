@@ -75,7 +75,7 @@
         function cwId(){ return parseInt(document.getElementById('cw').value || '1'); }
         function dist(){ return parseFloat(document.getElementById('dist').value || '10'); }
 
-        const socket = io('http://localhost:8000', {
+        const socket = io('https://api.walkaware.eu', {
             path: '/ws/socket.io',
             transports: ['websocket']
         });
@@ -90,11 +90,11 @@
         }
 
         // Dynamic zone constants (should mirror server values)
-        const MIN_ALERT_SPEED_MPS = 1.4;
+        const MIN_ALERT_SPEED_MPS = 1.0;
         const DRIVER_REACTION_TIME_S = 1.5;
         const AVG_DECELERATION_MPS2 = 6.0;
-        const SAFETY_BUFFER_M = 5.0;
-        const OUTER_ALERT_TIME_FACTOR = 2.0;
+        const SAFETY_BUFFER_M = 20;
+        const OUTER_ALERT_TIME_FACTOR = 2.5;
 
         function computeZones(speed) {
             if (speed == null || isNaN(speed) || !isFinite(speed) || speed <= MIN_ALERT_SPEED_MPS) {
