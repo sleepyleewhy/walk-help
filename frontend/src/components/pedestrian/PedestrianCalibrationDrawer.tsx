@@ -141,7 +141,7 @@ const PedestrianCalibrationDrawer: React.FC = () => {
                 <DrawerFooter>
                     <Button autoFocus onClick={() => StartCalibrating()} disabled={isCalibrating == true}>Start Calibrating</Button>
                     <Button onClick={() => resetCalibration()} disabled={isCalibrating == true}>Reset Calibration</Button>
-                    {import.meta.env.DEV &&<Button onClick={() => setDebugValues()}>Use Debug values</Button>}
+                    {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEBUG === 'true') &&<Button onClick={() => setDebugValues()}>Use Debug values</Button>}
                     <DrawerClose asChild>
                         <Button variant="outline" onClick={() => calibratingCanceled()}>Close</Button>
                     </DrawerClose>

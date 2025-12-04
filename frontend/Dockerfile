@@ -9,6 +9,9 @@ COPY . .
 ARG VITE_API_URL="wss://api.walkaware.eu"
 ENV VITE_API_URL=$VITE_API_URL
 
+ARG VITE_SHOW_DEBUG="false"
+ENV VITE_SHOW_DEBUG=$VITE_SHOW_DEBUG
+
 RUN npm run build
 
 

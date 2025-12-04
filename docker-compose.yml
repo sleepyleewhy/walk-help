@@ -3,10 +3,20 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
+    environment:
+      - USE_LOCAL_STORAGE=true
+      - USE_LOCAL_FIRESTORE=true
+      - LOCAL_STORAGE_DIR=/app/local_storage
+    volumes:
+      - ./local_storage:/app/local_storage
     networks:
       - walkhelp
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      args:
+        - VITE_SHOW_DEBUG=true
+        - VITE_API_URL=http://localhost:8000
     ports:
       - "3000:80"
     networks:

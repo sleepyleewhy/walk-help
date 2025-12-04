@@ -80,7 +80,7 @@ const PedestrianMetrics: React.FC = () => {
                         <Input type="text" id="timestamp" value={context.location?.timestamp.toLocaleDateString() || ""} disabled />
                     </div>
                 </CardContent>
-                {import.meta.env.DEV &&
+                {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEBUG === 'true') &&
                     <CardFooter>
                         <Button variant={"outline"}
                             className={context.locationDebug ? 'bg-green-600 hover:bg-green-700 hover:text-white text-white' : ''}
@@ -114,7 +114,7 @@ const PedestrianMetrics: React.FC = () => {
                         onChange={(e) => context.setMagnitudeThreshold(Number(e.target.value))} />
                     </div>
                 </CardContent>
-                {import.meta.env.DEV &&
+                {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEBUG === 'true') &&
                     <CardFooter>
                         <Button variant={"outline"}
                             className={context.magnitudeDebug ? 'bg-green-600 hover:bg-green-700 hover:text-white text-white' : ''}
@@ -137,7 +137,7 @@ const PedestrianMetrics: React.FC = () => {
                         onChange={(e) => context.setOrientation(Number(e.target.value))}/>
                     </div>
                 </CardContent>
-                {import.meta.env.DEV &&
+                {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEBUG === 'true') &&
                     <CardFooter>
                         <Button variant={"outline"}
                             className={context.orientationDebug ? 'bg-green-600 hover:bg-green-700 hover:text-white text-white' : ''}
@@ -171,7 +171,7 @@ const PedestrianMetrics: React.FC = () => {
                         </div>
                     )}
                 </CardContent>
-                {import.meta.env.DEV &&
+                {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEBUG === 'true') &&
                     <CardFooter>
                         <Button variant={"outline"}
                             className={context.cameraDebug ? 'bg-green-600 hover:bg-green-700 hover:text-white text-white' : ''}
