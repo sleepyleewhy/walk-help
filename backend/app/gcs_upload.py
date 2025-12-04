@@ -9,10 +9,10 @@ import uuid
 from typing import Optional
 import logging
 
-from google.cloud import storage
-
 logger = logging.getLogger(__name__)
 
+USE_LOCAL_STORAGE = os.getenv("USE_LOCAL_STORAGE", "false").lower() == "true"
+LOCAL_STORAGE_DIR = os.getenv("LOCAL_STORAGE_DIR", "local_storage")
 
 GCS_BUCKET = os.getenv("GCS_BUCKET", "")
 GCS_CROSSWALK_PREFIX = os.getenv("GCS_CROSSWALK_PREFIX", "crosswalk/")
@@ -51,8 +51,49 @@ def _parse_data_url(data_url: str) -> tuple[bytes, str, str]:
     return raw, mime, ext
 
 
-def _upload_bytes_to_gcs(raw: bytes, mime_type: str, is_crosswalk: bool) -> Optional[str]:
+def _upload_bytes(raw: bytes, mime_type: str, is_crosswalk: bool) -> Optional[str]:
+    if USE_LOCAL_STORAGE:
+        return _upload_local(raw, mime_type, is_crosswalk)
+    else:
+        return _upload_gcs(raw, mime_type, is_crosswalk)
+
+
+def _upload_local(raw: bytes, mime_type: str, is_crosswalk: bool) -> Optional[str]:
     try:
+        if not os.path.exists(LOCAL_STORAGE_DIR):
+            os.makedirs(LOCAL_STORAGE_DIR)
+        
+        prefix = "crosswalk" if is_crosswalk else "no_crosswalk"
+        directory = os.path.join(LOCAL_STORAGE_DIR, prefix)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        if "/png" in mime_type:
+            ext = "png"
+        elif "/webp" in mime_type:
+            ext = "webp"
+        elif "/gif" in mime_type:
+            ext = "gif"
+        else:
+            ext = "jpg"
+
+        filename = f"{int(time.time()*1000)}_{uuid.uuid4()}.{ext}"
+        filepath = os.path.join(directory, filename)
+        
+        with open(filepath, "wb") as f:
+            f.write(raw)
+            
+        uri = f"file://{os.path.abspath(filepath)}"
+        logger.info("Saved image locally to %s", uri)
+        return uri
+    except Exception:
+        logger.exception("Failed to save image locally")
+        return None
+
+
+def _upload_gcs(raw: bytes, mime_type: str, is_crosswalk: bool) -> Optional[str]:
+    try:
+        from google.cloud import storage
         if not GCS_BUCKET:
             logger.warning("GCS upload skipped: GCS_BUCKET env var is not set")
             return None
@@ -75,6 +116,9 @@ def _upload_bytes_to_gcs(raw: bytes, mime_type: str, is_crosswalk: bool) -> Opti
         gs_uri = f"gs://{GCS_BUCKET}/{object_name}"
         logger.info("Uploaded image to %s", gs_uri)
         return gs_uri
+    except ImportError:
+        logger.error("google-cloud-storage not installed")
+        return None
     except Exception:
         logger.exception("Failed to upload image to GCS")
         return None
@@ -82,4 +126,4 @@ def _upload_bytes_to_gcs(raw: bytes, mime_type: str, is_crosswalk: bool) -> Opti
 
 async def async_upload_image_base64_to_gcs(data_url: str, is_crosswalk: bool) -> Optional[str]:
     raw, mime, _ = _parse_data_url(data_url)
-    return await asyncio.to_thread(_upload_bytes_to_gcs, raw, mime, is_crosswalk)
+    return await asyncio.to_thread(_upload_bytes, raw, mime, is_crosswalk)

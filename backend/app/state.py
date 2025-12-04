@@ -1,11 +1,12 @@
 from typing import Any, Dict, Optional, List, Set
-from google.cloud.firestore_v1 import (
+from .firestore_provider import (
     AsyncClient,
     AsyncTransaction,
     async_transactional,
     ArrayUnion,
     ArrayRemove,
-    DELETE_FIELD
+    DELETE_FIELD,
+    get_firestore_client
 )
 from google.api_core.exceptions import AlreadyExists, NotFound
 import asyncio
@@ -32,7 +33,7 @@ async def get_client() -> AsyncClient:
     if _client is None:
         async with _client_lock:
             if _client is None:
-                _client = AsyncClient(database="walkaware-db")
+                _client = get_firestore_client()
     return _client
 
 def crosswalk_ref(db: AsyncClient, crosswalk_id: int):

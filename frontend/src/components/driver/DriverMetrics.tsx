@@ -63,7 +63,7 @@ const DriverMetrics: React.FC = () => {
                         <Input type="text" id="timestamp" value={context.location?.timestamp.toLocaleDateString() || ""} disabled />
                     </div>
                 </CardContent>
-                {import.meta.env.DEV &&
+                {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEBUG === 'true') &&
                     <CardFooter>
                         <Button variant={"outline"}
                             className={context.locationDebug ? 'bg-green-600 hover:bg-green-700 hover:text-white text-white' : ''}

@@ -75,7 +75,7 @@
         function cwId(){ return parseInt(document.getElementById('cw').value || '1'); }
         function dist(){ return parseFloat(document.getElementById('dist').value || '10'); }
 
-        const socket = io('https://api.walkaware.eu', {
+        const socket = io('http://localhost:8000', {
             path: '/ws/socket.io',
             transports: ['websocket']
         });

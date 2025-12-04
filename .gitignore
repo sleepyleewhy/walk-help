@@ -172,6 +172,7 @@ cython_debug/
 
 dataset/
 node_modules/
+local_storage/
 
 
 cert.crt
